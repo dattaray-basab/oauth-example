@@ -8,15 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func validateToken(token string) bool {
-    // Validate the token (e.g., with Google's /tokeninfo endpoint or JWT libraries)
-    return true // Placeholder logic
-}
+// func validateToken(token string) bool {
+//     // Validate the token (e.g., with Google's /tokeninfo endpoint or JWT libraries)
+//     return true // Placeholder logic
+// }
 
 func AuthMiddleware() gin.HandlerFunc {
     return func(c *gin.Context) {
         token := c.GetHeader("Authorization")
-        if token == "" || !validateToken(token) {
+        if token == "" {
             c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
             c.Abort()
             return
